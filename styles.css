@@ -1,0 +1,157 @@
+*{
+	font-family: 'Open Sans', monospace;
+}
+
+body{
+	margin: 0;
+	background-color: #ffffff;
+}
+
+.wrapper{
+	width: 1000px;
+	margin: auto;
+}
+
+#aboutSection{
+	height: 500px;
+	background-image: url(images/aboutBG.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+  	box-shadow: 0px 1px 50px 2px rgba(0, 0, 0, 0.2);
+}
+
+#projectSection{
+	padding: 0 auto;
+	background-color: #ffffff;
+}
+
+#navContainer{
+	padding-top: 20px;
+}
+
+#navBar{
+	margin: auto;
+	background-color: white;
+	height: 50px;
+	width: 1000px;
+  	box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+#navBar p{
+	display: inline-block;
+    font-size: 1.1em;
+    text-transform: uppercase;
+}
+
+#links{
+	color: #a8a8a8;
+	float: right;
+	margin: auto;
+	padding: 11.5px 20px 11.5px 0;
+}
+
+#logo{
+	color: #5b5b5b;
+	margin: auto;
+	padding: 11.5px 0 11.5px 20px;
+}
+
+#profilePhoto{
+	background-color: white;
+	height: 200px;
+	width: 200px;
+	margin: 80px auto 60px auto;
+  	box-shadow: 0px 11px 32px 0px rgba(0, 0, 0, 0.05);
+  	border-radius: 50%;
+  	background-image: url(images/IMG_0482.jpg);
+  	background-position: center center;
+  	background-size: cover;
+}
+
+#aboutSection h1{
+	text-align: center;
+	color: white;
+	margin: none;
+}
+
+#projectSection h2{
+	text-align: center;
+	font-weight: 600;
+	font-size: 1.1em;
+	color: grey;
+	margin: 50px 0;
+}
+
+#contactSection p{
+	text-align: center;
+}
+
+#slidesWrapper{
+	width: 800px;
+	margin: auto;
+}
+
+#slidesWrapper > div{
+	height: 225px;
+	width: 800px;
+	margin-bottom: 20px;
+	background-color: white;
+	border: 1.7px solid lightgrey;
+}
+
+#slidesWrapper img{
+	height: 225px;
+}
+
+.infoPanel{
+	height: 225px;
+	width: 400px;
+	float: right;
+}
+
+.infoPanel p{
+	margin: 0;
+}
+
+.projTitle{
+	padding: 20px 0 10px 20px;
+	font-weight: 600;
+	font-size: .9em;
+}
+
+.projTechs{
+	padding: 0 0 10px 20px;
+	font-weight: 300;
+	font-size: 0.8em;
+	font-style: italic;
+	color: #59676c;
+}
+
+.projDesc{
+	padding: 0 20px 0 20px;
+	font-size: 0.8em;
+}
+
+@media (max-width: 1040px){
+	#navBar{
+		width: 96vw;
+	}
+}
+
+@media (max-width: 1000px){
+	.wrapper{
+		width: 100vw;
+	}
+}
+
+@media (max-width: 800px){
+	#slidesWrapper{
+		width: 400px;
+	}
+
+	#slidesWrapper > div{
+		height: 450px;
+		width: 400px;
+	}	
+
+}
