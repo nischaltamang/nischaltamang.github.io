@@ -1,5 +1,5 @@
 *{
-	font-family: 'Open Sans', monospace;
+	font-family: 'Hind', sans-serif;
 }
 
 body{
@@ -8,16 +8,63 @@ body{
 }
 
 .wrapper{
-	width: 1000px;
+	max-width: 100%;
+	width: 800px;
 	margin: auto;
 }
 
 #aboutSection{
-	height: 500px;
-	background-image: url(images/aboutBG.png);
+	height: 600px;
+	background-image: url(images/websitebg.png);
 	background-size: cover;
+	background-position: center center;
 	background-repeat: no-repeat;
-  	box-shadow: 0px 1px 50px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar{
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+	background-color: white;
+	padding: 15px 0;
+}
+
+#links {
+	display: inline;
+	list-style-type: none;
+	padding: 5px 0 0 0;
+	margin: 0;
+	float: right;
+}
+
+a {
+	display: inline;
+	font-weight: 300;
+	color: #484848;
+	margin-left: 1em;
+}
+
+.button_contact{
+	border: none;
+	outline: none;
+	border-radius: .3rem;
+	padding: 3px 18px 2px 18px;
+
+
+	color: white;
+	text-decoration: none;
+	text-align: center;
+
+	background: #2AC77F;
+}
+
+#logo{
+	font-family: 'Unica One', cursive;
+	font-size: 25px;
+	display: inline;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 
 #projectSection{
@@ -25,53 +72,13 @@ body{
 	background-color: #ffffff;
 }
 
-#navContainer{
-	padding-top: 20px;
-}
-
-#navBar{
-	margin: auto;
-	background-color: white;
-	height: 50px;
-	width: 1000px;
-  	box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.15);
-}
-
-#navBar p{
-	display: inline-block;
-    font-size: 1.1em;
-    text-transform: uppercase;
-}
-
-#links{
-	color: #a8a8a8;
-	float: right;
-	margin: auto;
-	padding: 11.5px 20px 11.5px 0;
-}
-
-#logo{
-	color: #5b5b5b;
-	margin: auto;
-	padding: 11.5px 0 11.5px 20px;
-}
-
-#profilePhoto{
-	background-color: white;
-	height: 200px;
-	width: 200px;
-	margin: 80px auto 60px auto;
-  	box-shadow: 0px 11px 32px 0px rgba(0, 0, 0, 0.05);
-  	border-radius: 50%;
-  	background-image: url(images/IMG_0482.jpg);
-  	background-position: center center;
-  	background-size: cover;
-}
-
 #aboutSection h1{
-	text-align: center;
+	width: 400px;
+	padding-top: 250px;
+	text-align: left;
+	float: right;
 	color: white;
-	margin: none;
+	margin: 0;
 }
 
 #projectSection h2{
@@ -132,15 +139,27 @@ body{
 	font-size: 0.8em;
 }
 
-@media (max-width: 1040px){
-	#navBar{
-		width: 96vw;
+.button{
+	margin: 0 20px 0 20px;
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
+@media (max-width: 900px){
+	.wrapper{
+		width: 90vw;
 	}
+
 }
 
 @media (max-width: 1000px){
-	.wrapper{
-		width: 100vw;
+	#aboutSection{
+		background-size: cover;
+		background-position: -450px;
 	}
 }
 
