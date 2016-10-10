@@ -19,6 +19,7 @@ body{
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
+	opacity: .9;
 }
 
 .nav-bar{
@@ -43,6 +44,7 @@ a {
 	font-weight: 300;
 	color: #484848;
 	margin-left: 1em;
+	text-decoration: none;
 }
 
 .button_contact{
