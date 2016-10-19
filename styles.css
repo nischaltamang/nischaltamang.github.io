@@ -61,6 +61,14 @@ a {
 	background: #2AC77F;
 }
 
+#button_viewmore{
+	padding: 20px 0 10px 20px;
+	margin: 0;
+	font-size: .9em;
+	font-weight: 500;
+	
+}
+
 #logo{
 	font-family: 'Unica One', cursive;
 	font-size: 25px;
@@ -138,17 +146,8 @@ a {
 
 .projDesc{
 	padding: 0 20px 0 20px;
+	margin-bottom: 20px;
 	font-size: 0.8em;
-}
-
-.button{
-	margin: 0 20px 0 20px;
-	-webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-
-    text-decoration: none;
-    color: initial;
 }
 
 @media (max-width: 900px){
