@@ -13,15 +13,7 @@ body{
 	margin: auto;
 }
 
-#aboutSection{
-	height: 600px;
-	background-image: url(images/websitebg.png);
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-	opacity: .9;
-}
-
+/* -----nav bar---------*/
 .nav-bar{
 	top: 0;
 	left: 0;
@@ -29,6 +21,14 @@ body{
 	width: 100%;
 	background-color: white;
 	padding: 15px 0;
+}
+
+#logo{
+	font-family: 'Unica One', cursive;
+	font-size: 25px;
+	display: inline;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 
 #links {
@@ -60,26 +60,17 @@ a {
 
 	background: #2AC77F;
 }
+/* --------------------*/
 
-#button_viewmore{
-	padding: 20px 0 10px 20px;
-	margin: 0;
-	font-size: .9em;
-	font-weight: 500;
-	
-}
 
-#logo{
-	font-family: 'Unica One', cursive;
-	font-size: 25px;
-	display: inline;
-	font-weight: 600;
-	text-transform: uppercase;
-}
-
-#projectSection{
-	padding: 0 auto;
-	background-color: #ffffff;
+/* -----about section---------*/
+#aboutSection{
+	height: 600px;
+	background-image: url(images/websitebg.png);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	opacity: .9;
 }
 
 #aboutSection h1{
@@ -90,64 +81,98 @@ a {
 	color: white;
 	margin: 0;
 }
+/* --------------------*/
 
-#projectSection h2{
-	text-align: center;
-	font-weight: 600;
-	font-size: 1.1em;
-	color: grey;
-	margin: 50px 0;
+/* -----project section---------*/
+
+h2 {
+	font-size: .9rem;
+	color: #5F5F5F;
+	margin: 25px 0;
 }
 
-#contactSection p{
-	text-align: center;
+.project_card{
+	height: 205px;
+	width: 355px;
+	border: 1px solid #EDEDED;
+	border-radius: .2rem;
+	display: inline-block;
+	padding: 15px;
 }
 
-#slidesWrapper{
-	width: 800px;
-	margin: auto;
+.image_container, .right{
+	display: inline-block;
 }
 
-#slidesWrapper > div{
-	height: 225px;
-	width: 800px;
-	margin-bottom: 20px;
-	background-color: white;
-	border: 1.7px solid lightgrey;
+.right{
+	width: 160px;
+	float: right;
+	padding-left: 5px;
 }
 
-#slidesWrapper img{
-	height: 225px;
-}
-
-.infoPanel{
-	height: 225px;
-	width: 400px;
+#country_codes_card{
 	float: right;
 }
 
-.infoPanel p{
+.image_container{
+	height: 178px;
+	width: 178px;
+	border-radius: .2rem;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#comeups_image{
+	background-image: url(images/ComeUpsMovies.png);
+}
+
+#countrycodes_image{
+	background-image: url(images/CountryCodes.png);
+}
+
+.project_title{
+	display: block;
 	margin: 0;
+	font-size: .9rem;
+	color: #767676;
 }
 
-.projTitle{
-	padding: 20px 0 10px 20px;
-	font-weight: 600;
-	font-size: .9em;
+.used_tech{
+	margin: 0 0 7px 0;
+	font-size: .6rem;
+	color: #95989A;
 }
 
-.projTechs{
-	padding: 0 0 10px 20px;
-	font-weight: 300;
-	font-size: 0.8em;
-	font-style: italic;
-	color: #59676c;
+.project_description{
+	margin: 0 0 15px 0;
+	font-size: .9rem;
+	color: #2F2F2F;
 }
 
-.projDesc{
-	padding: 0 20px 0 20px;
-	margin-bottom: 20px;
-	font-size: 0.8em;
+.button_view{
+	border: 1px solid #D0D0D0;
+	outline: none;
+	border-radius: .2rem;
+	padding: 2px 18px 1px 18px;
+
+	color: #B1B4B5;
+	text-decoration: none;
+	text-align: center;
+
+	background: white;
+	text-transform: uppercase;
+	font-size: .8rem;
+	font-weight: 500;
+	margin-left: 0;
+
+}
+/* --------------------*/
+
+
+
+#contactSection p{
+	text-align: center;
 }
 
 @media (max-width: 900px){
