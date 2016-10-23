@@ -211,24 +211,39 @@ a img{
 	.wrapper{
 		width: 90vw;
 	}
+}
 
+@media (max-width: 600px){
+	.wrapper{
+		width: 98vw;
+	}
 }
 
 @media (max-width: 1000px){
 	#aboutSection{
 		background-size: cover;
-		background-position: -450px;
+		background-position: -500px;
 	}
 }
 
-@media (max-width: 800px){
-	#slidesWrapper{
-		width: 400px;
+@media (max-width: 870px){
+	.project_card{
+		display: block;
+		margin: auto;
 	}
 
-	#slidesWrapper > div{
-		height: 450px;
-		width: 400px;
-	}	
+	#country_codes_card{
+		float: none;
+		margin-top: 15px;
+	}
 
+	#aboutSection h1{
+		width: 350px;
+		padding-top: 250px;
+		text-align: center;
+		float: none;
+		margin: auto;
+	}
 }
+
+
