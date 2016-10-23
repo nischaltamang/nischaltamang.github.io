@@ -14,6 +14,7 @@
 }
 
 .button_contact{
+	margin-left: 1em;
 	border: none;
 	outline: none;
 	border-radius: .3rem;
@@ -43,12 +44,17 @@
 	float: right;
 }
 
-a {
+#links a:not(.button_contact)  {
 	display: inline;
 	font-weight: 300;
 	color: #484848;
 	margin-left: 1em;
 	text-decoration: none;
+	opacity: .6;
+}
+
+#links a:not(.button_contact):hover {
+	opacity: 1;
 }
 
 .hr {
@@ -115,6 +121,12 @@ section>p{
 	content:'';
 	width: 100%;
 	display: inline-block;
+}
+
+#country_codes_wire_frames{
+	width: 200px;
+	float: left;
+	image-orientation: from-image;
 }
 
 @media (max-width: 900px){

@@ -39,15 +39,21 @@ body{
 	float: right;
 }
 
-a {
+#links a:not(.button_contact)  {
 	display: inline;
 	font-weight: 300;
 	color: #484848;
 	margin-left: 1em;
 	text-decoration: none;
+	opacity: .6;
+}
+
+#links a:not(.button_contact):hover {
+	opacity: 1;
 }
 
 .button_contact{
+	margin-left: 1em;
 	border: none;
 	outline: none;
 	border-radius: .3rem;
@@ -58,7 +64,13 @@ a {
 	text-decoration: none;
 	text-align: center;
 
+	opacity: .8;
+
 	background: #2AC77F;
+}
+
+.button_contact:hover{
+	opacity: 1;
 }
 /* --------------------*/
 
@@ -140,7 +152,7 @@ h2 {
 
 .used_tech{
 	margin: 0 0 7px 0;
-	font-size: .6rem;
+	font-size: .7rem;
 	color: #95989A;
 }
 
@@ -151,7 +163,7 @@ h2 {
 }
 
 .button_view{
-	border: 1px solid #D0D0D0;
+	border: 1px solid lightgrey;
 	outline: none;
 	border-radius: .2rem;
 	padding: 2px 18px 1px 18px;
@@ -165,8 +177,28 @@ h2 {
 	font-size: .8rem;
 	font-weight: 500;
 	margin-left: 0;
-
+	vertical-align: top;
 }
+
+.button_view:hover{
+	border: 1px solid grey;
+	color: grey;
+}
+
+#github_button{
+	margin-left: 1em;
+	opacity: .5;
+}
+
+#github_button:hover{
+	opacity: .9;
+}
+
+a img{
+	width: 20px;
+}
+
+
 /* --------------------*/
 
 
