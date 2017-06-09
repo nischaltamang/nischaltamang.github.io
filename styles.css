@@ -1,3 +1,75 @@
+body{
+  margin: 0;
+}
+
+#bootstrap-overrides h1{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 35px;
+}
+
+#bootstrap-overrides h2{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+#bootstrap-overrides h3{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
 p{
-  text-align: center;
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 170%;
+}
+
+a{
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.container{
+  margin-top: 60px;
+}
+
+.row{
+  margin-bottom: 50px;
+}
+
+#title h1{
+  text-transform: uppercase;
+  margin: 0;
+}
+
+#title p{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: grey;
+}
+
+.photo{
+  max-width: 100%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+
+  background-size: cover;
+}
+
+section{
+  margin-bottom: 50px;
+}
+
+#title{
+  margin-bottom: 0px;
 }
