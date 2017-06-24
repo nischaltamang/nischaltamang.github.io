@@ -5,7 +5,7 @@ body{
 #bootstrap-overrides h1{
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 35px;
+  font-size: 30px;
 }
 
 #bootstrap-overrides h2{
@@ -17,20 +17,29 @@ body{
 #bootstrap-overrides h3{
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 p{
   font-family: 'Lora', serif;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 170%;
+  font-size: 15px;
+  line-height: 140%;
 }
 
 a{
   font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+#title a{
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: black;
+  text-decoration: none;
 }
 
 .container{
@@ -38,7 +47,11 @@ a{
 }
 
 .row{
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+}
+
+#title{
+  display: inline-block;
 }
 
 #title h1{
@@ -49,27 +62,31 @@ a{
 #title p{
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   color: grey;
 }
 
 .photo{
   max-width: 100%;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;
-
   background-size: cover;
+  display: inline-block;
+  margin-right: 10px
 }
 
-section{
-  margin-bottom: 50px;
+#bootstrap-overrides .jumbotron{
+  padding: 30px 35px;
 }
 
-#title{
-  margin-bottom: 0px;
+#jumbotron p{
+  margin-bottom: 0;
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 170%;
 }

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="blog-styles.css"/>
+    <link rel="stylesheet" href="highlight/styles/atom-one-light.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  </head>
+  <body id="bootstrap-overrides">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="photo" style="background-image:url(../images/self-image.jpg)"></div>
+
+          <section id="title">
+            <a href="../index.html">Nischal Tamang</a>
+            <p>@ Boston, MA</p>
+          </section>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+      <div class="col-lg-12">
+        <h1>Using Python To Explore The Correlation Between Jump Balls And Wins In The NBA</h1>
+        <i>June 24, 2017, 12:57 PM / Python, Web Scraping</i>
+
+        <h3>Introduction</h3>
+
+        <p>The initial jump ball in a basketball game determines who gets the very first possession. It also decides who gets first possession in every subsequent quarter. The team that lost the jump ball gets the first possession in the 2nd and 3rd quarter meanwhile the team that won the tip gets the first possession in the 4th quarter. Using Python, let’s see if there is an advantage to winning the jump ball. </p>
+
+        <h3>Code</h3>
+
+        <p>Our basic strategy is to gather a dataset of NBA games and for each game compare the team that won the jump ball with the team that won the actual game. We will be using the 2016 - 2017 regular season for the dataset. To obtain the data we will scrape ESPN's NBA scoreboard page.</p>
+
+        <div class="code-block">
+          <i>In [1]:</i>
+          <code>
+  import requests
+  import json
+  from bs4 import BeautifulSoup, SoupStrainer
+  from datetime import date, timedelta, datetime
+          </code>
+        </div>
+
+        <div class="code-block">
+          <p>Let’s first write a helper method that, given a game id, scrapes the play by play page and finds the team that won the jump ball. You can visit a play by page for any game by sticking the game id at the end of www.espn.com/nba/playbyplay?gameId=. Example: <a target="_blank" href="http://www.espn.com/nba/playbyplay?gameId=400900341">http://www.espn.com/nba/playbyplay?gameId=400900341</a>.</p>
+
+          <p>On the play by play page, the jump ball result is contained in a div with id = "gp-quarter-1". Within this div, there exists a chronological order of all plays in the 1st quarter and an img of the corresponding team that made that play. The first table data tells you who won the jumpball.</p>
+
+          <div class="example">
+            <img src="../images/pbp.jpg" alt="espn play by play example" class="img-responsive">
+            <figcaption>Fig 2. The Trail Blazers win the jump ball, but the Thunder logo is the first img.</figcaption>
+          </div>
+
+          <p>ESPN unfortunately doesn't always put the jump ball winner's img as the first img tag. We can guarantee getting the correct team's img by just getting the 2nd img. Here's the method.</p>
+
+          <i>In [2]:</i>
+          <code>
+  #Get the abbreviation of the team that won jumpball
+  def get_first_team(game_id):
+      #Make a request to the playbyplay page
+      r = requests.get('http://www.espn.com/nba/playbyplay?gameId={}'.format(game_id))
+
+      #Initialize BeautifulSoup
+      soup = BeautifulSoup(r.content, 'lxml')
+
+      #Get the 2nd image
+      img = soup.find(id = 'gp-quarter-1').find_all('img', limit = 2)[1]
+
+      #Splice the img src to get team abbreviation
+      #ex. 'http://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/bos.png&h=100&w=100'
+      #len('http://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/') = 57
+      #len('.png&h=100&w=100') = 16
+      return img['src'][57:-16]
+          </code>
+        </div>
+
+        <div class="code-block">
+          <i>In [3]:</i>
+          <code class="python">
+  print(get_first_team(400900341))
+          </code>
+
+          <i>Out [3]:</i>
+          <code class="mkd">
+  > por
+          </code>
+        </div>
+
+        <p>Before showing the rest of the code, let's look at the daily NBA scoreboard on ESPN to see what we're dealing with.</p>
+
+        <div class="example">
+          <img src="../images/scoreboard.jpg" alt="espn scoreboard example" class="img-responsive">
+          <figcaption>Fig 1. NBA scoreboard for the date of 03/07/2017.</figcaption>
+        </div>
+
+        <p>The scoreboard page on ESPN lists all games of a particular day. Similar to the play by play page, you can visit a scoreboard page of any day by inserting the date at the end of www.espn.com/nba/scoreboard/_/date/. Example: <a target="_blank" href="http://www.espn.com/nba/scoreboard/_/date/20170307">http://www.espn.com/nba/scoreboard/_/date/20170307</a>.</p>
+
+        <p>On the page, we want to scrape each game for an id to find the jump ball winner and the actual winner. If we try to scrape the page though, the elements with the data will be empty because it’s a dynamically generated page. Fortunately, the page has a script tag with all of the data that is supposed to go on the page. It’s in JSON format so we can use the dictionary data structure.</p>
+
+        <div class="example">
+          <img src="../images/script.jpg" alt="espn script example" class="img-responsive">
+          <figcaption>Fig 2. The 3rd script tag in the image contains the data for all the games on that day. Note that it's the 2nd sibling to script with src = "http://cdn.optimizely.com/js/310987714.js" </figcaption>
+        </div>
+
+        <div class="code-block">
+          <p>I have shown all the important keys &amp values that we will be using.</p>
+          <code class="json">
+  {
+    "events": [
+      {
+        "competitions": [
+          {
+            "competitors": [
+              {
+                "winner": false,
+                "team": {
+                  "abbreviation": "OKC",
+                }
+              },
+              {
+                "winner": true,
+                "team": {
+                  "abbreviation": "POR"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "400900341",
+        "status": {
+          "type": {
+            "completed": true
+          }
+        }
+      },
+      {
+        //same as first but diff data for the 2nd game of the day
+      },
+      {
+        //same as first but diff data for the 3rd game of the day
+      }
+    ]
+  }
+          </code>
+
+        </div>
+
+        <div class="code-block">
+          <p>In the JSON data, "events" is an array and each element in this array is a particular game. Knowing this, let's write a helper method that finds the winner of an event by looking up the "winner" key value pair.</p>
+          <i>In [4]:</i>
+          <code>
+  #Get the abbreviation of the winning team given an event
+  def get_winner(event):
+      #Get the two competitors of the event
+      competitors_dict = event.get('competitions')[0].get('competitors')
+
+      if competitors_dict[0].get('winner') == True:
+          return competitors_dict[0].get('team').get('abbreviation').lower()
+      else:
+          return competitors_dict[1].get('team').get('abbreviation').lower()
+          </code>
+        </div>
+
+        <div class="code-block">
+          <i>In [5]:</i>
+          <code class="python">
+  #event is the POR OKC game I showed above
+  print(get_winner(event))
+          </code>
+
+          <i>Out [5]:</i>
+          <code class="mkd">
+  > por
+          </code>
+        </div>
+
+        <div class="code-block">
+          <p>Here's the code for the main method. We utilize the two helper methods we wrote earlier, get_first_team(game_id) and get_winner(event).</p>
+
+
+          <i>In [6]:</i>
+          <code>
+  def main():
+      #Initialize datetime objects
+      one_day = timedelta(days = 1)
+      curr_day = date(2016, 10, 25)
+      last_day = date(2017, 4, 12)
+
+      #Initialize variables holding our final data
+      #1. total games calculated
+      #2. total wins for teams that win the jumpball
+      total_games = 0
+      wins = 0
+
+      while curr_day <= last_day:
+          #Make request on curr_day's scoreboard page
+          r = requests.get('http://www.espn.com/nba/scoreboard/_/date/{y}{m}{d}'.format(y = curr_day.year, m = curr_day.strftime('%m'), d = curr_day.strftime('%d')))
+
+          #Initialize BeautifulSoup
+          soup = BeautifulSoup(r.content, 'lxml')
+
+          #Get the content of the script with JSON data
+          #When looking at HTML, the json script is 2nd sibling
+          #of the one w/ special src but for some reason it's
+          #the 3rd sibling when scraping
+          content = soup.find('script', attrs={'src' : 'http://cdn.optimizely.com/js/310987714.js'}).next_sibling.next_sibling.next_sibling.contents[0]
+
+          #Remove the variable name and useless things at the end
+          #of the content
+          #len('window.espn.scoreboardData 	= {') = 30
+          #len of useless things at the end = 281
+          json_data = content[30:-281]
+
+          #Decode the json into a dictionary and get the events
+          main_dict = json.loads(json_data)
+          events_dict = main_dict.get('events')
+
+          total_games += len(events_dict)
+          print(curr_day)
+
+          for event in events_dict:
+              #Skip instances where a game wasn't played
+              #*look below for clarification
+              if not event.get('status').get('type').get('completed'):
+                  total_games -= 1
+                  continue;
+
+              first_team = get_first_team(event.get('id'))
+              winner = get_winner(event)
+
+              if first_team == winner:
+                  wins += 1
+
+          curr_day += one_day
+
+      print('')
+      print('Total games calculated: {}.'.format(total_games))
+      print('Teams that win the jumpball were {} - {}.'.format(wins, total_games-wins))
+      print('A winning % of: {:.5%}.'.format(wins/total_games))
+
+  if __name__ == '__main__':
+      main()
+          </code>
+        </div>
+
+        <p>Inside the for loop, I checked if the game is completed because of games that were postponed. On the day the game was supposed to be played, ESPN puts a game equivalent to a null on that date. If we were call get_first_team() on this game, BeautifulSoup would throw errors.</p>
+
+        <div class="code-block">
+          <p>If we run our code, we get the following results.</p>
+
+          <i>In [7]:</i>
+          <code>
+    python3 jb_espn.py
+          </code>
+
+          <i>Out [7]:</i>
+          <code>
+    > Total games calculated: 1231.
+    > Teams that win the jumpball were 594 - 637.
+    > A winning % of: 48.25345%.
+          </code>
+
+          <p>The one extra game calculated is the all star game. You could say that this game is an anomaly. If I don't count the all star game, the results would be the following.</p>
+        </div>
+
+        <div class="code-block">
+          <i>In [8]:</i>
+          <code>
+    python3 jb_espn.py
+          </code>
+
+          <i>Out [8]:</i>
+          <code>
+    > Total games calculated: 1230.
+    > Teams that win the jumpball were 593 - 637.
+    > A winning % of: 48.21138%.
+          </code>
+        </div>
+
+        <p>With the jump ball winning teams winning 48% of the games, it's safe to say that winning the jump ball doesn't give a team any advantage. This is probably due to all the other variables that determine who wins the game.</p>
+
+
+      </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+				<div class="main col-lg-6">
+					<section id="social">
+						<h2>Contacts</h2>
+						<a href="mailto:NischTamang@gmail.com">Email</a>
+						<a target="_blank" href="https://github.com/nischaltamang">Github</a>
+						<a target="_blank" href="https://www.linkedin.com/in/nischal-tamang-84a792107/">LinkedIn</a>
+					</section>
+				</div>
+			</div>
+    </div>
+
+
+
+    <script type="text/javascript" src="scripts.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+  </body>
+</html>
