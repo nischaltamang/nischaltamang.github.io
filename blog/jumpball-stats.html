@@ -52,7 +52,7 @@
         </div>
 
         <div class="code-block">
-          <p>Let’s first write a helper method that, given a game id, scrapes the play by play page and finds the team that won the jump ball. You can visit a play by page for any game by sticking the game id at the end of www.espn.com/nba/playbyplay?gameId=. Example: <a target="_blank" href="http://www.espn.com/nba/playbyplay?gameId=400900341">http://www.espn.com/nba/playbyplay?gameId=400900341</a>.</p>
+          <p>Let’s first write a helper method that, given a game id, scrapes the play by play page and finds the team that won the jump ball. You can visit a play by page for any game by sticking the game id at the end of www.espn.com/nba/playbyplay?gameId=</p>
 
           <p>On the play by play page, the jump ball result is contained in a div with id = "gp-quarter-1". Within this div, there exists a chronological order of all plays in the 1st quarter and an img of the corresponding team that made that play. The first table data tells you who won the jumpball.</p>
 
@@ -103,7 +103,7 @@
           <figcaption>Fig 1. NBA scoreboard for the date of 03/07/2017.</figcaption>
         </div>
 
-        <p>The scoreboard page on ESPN lists all games of a particular day. Similar to the play by play page, you can visit a scoreboard page of any day by inserting the date at the end of www.espn.com/nba/scoreboard/_/date/. Example: <a target="_blank" href="http://www.espn.com/nba/scoreboard/_/date/20170307">http://www.espn.com/nba/scoreboard/_/date/20170307</a>.</p>
+        <p>The scoreboard page on ESPN lists all games of a particular day. Similar to the play by play page, you can visit a scoreboard page of any day by inserting the date at the end of www.espn.com/nba/scoreboard/_/date/</p>
 
         <p>On the page, we want to scrape each game for an id to find the jump ball winner and the actual winner. If we try to scrape the page though, the elements with the data will be empty because it’s a dynamically generated page. Fortunately, the page has a script tag with all of the data that is supposed to go on the page. It’s in JSON format so we can use the dictionary data structure.</p>
 
